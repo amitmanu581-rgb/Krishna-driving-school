@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <meta name="description" content="Krishna Driving School — focused car driving training in Muzaffarnagar. Learn practical car control, clutch control, hill driving and road confidence." />
+  <meta name="theme-color" content="#111111" />
+  <meta property="og:title" content="Krishna Driving School | Learn to Drive With Confidence" />
+  <meta property="og:description" content="Focused 15-day car driving training in Muzaffarnagar." />
+  <title>Krishna Driving School | Learn to Drive With Confidence</title>
+  <!-- Bootstrap 5 CSS (CDN) + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* custom overrides & mobile-first */
+    :root {
+      --bg: #0b0c0d;
+      --surface: #111315;
+      --surface2: #17191b;
+      --paper: #f4f2ed;
+      --text: #f7f5ef;
+      --muted: #a4a7a8;
+      --ink: #161718;
+      --accent: #f59e0b;
+      --accent2: #ffbd4a;
+      --line: rgba(255,255,255,.11);
+      --darkline: rgba(15,15,15,.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.5;
+      overflow-x: hidden;
+      padding-top: 0;
+    }
+    a { text-decoration: none; color: inherit; }
+    /* header always dark background */
+    .site-header {
+      background: #0b0c0d;
+      backdrop-filter: blur(0);
+      border-bottom: 1px solid var(--line);
+      transition: .3s;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav { height: 72px; display: flex; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 10px; color: #fff; }
+    .brand-mark {
+      display: grid; place-items: center;
+      width: 38px; height: 38px;
+      border: 1px solid rgba(245,158,11,.7);
+      border-radius: 50%;
+      color: var(--accent);
+      font-weight: 800; font-size: 18px;
+    }
+    .brand strong { font-size: 14px; letter-spacing: .14em; line-height: 1; }
+    .brand small { font-size: 8px; letter-spacing: .2em; color: #aaa; display: block; margin-top: 3px; }
+    .nav-links { gap: 20px; color: #c5c7c8; font-size: 13px; font-weight: 600; }
+    .nav-links a { transition: .25s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      border: 1px solid rgba(245,158,11,.6);
+      padding: 8px 16px;
+      border-radius: 30px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .nav-cta span { color: var(--accent); }
+    .menu-toggle {
+      background: none; border: 0;
+      width: 40px; height: 40px;
+      display: flex; flex-direction: column; gap: 5px;
+      align-items: center; justify-content: center;
+    }
+    .menu-toggle span {
+      display: block; width: 24px; height: 2px;
+      background: #fff; border-radius: 2px;
+    }
+    /* mobile nav fix */
+    .nav-links.open {
+      display: flex !important;
+    }
+
+    /* hero */
+    .hero {
+      background: #0b0c0d;
+      color: #fff;
+      padding: 2rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      opacity: .2;
+      background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+    .hero-road {
+      position: absolute;
+      width: 80vw; height: 80vw;
+      border-radius: 50%;
+      right: -30vw; bottom: -62vw;
+      border: 1px solid rgba(245,158,11,.16);
+      box-shadow: 0 0 0 90px rgba(245,158,11,.025), 0 0 0 180px rgba(245,158,11,.02);
+    }
+    .hero-inner { position: relative; z-index: 2; }
+    .hero h1 { font-size: clamp(2.8rem, 10vw, 4.8rem); line-height: 1; letter-spacing: -.04em; font-weight: 800; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-lead { font-size: 1.05rem; color: #b7b9ba; max-width: 540px; }
+    .hero-lead strong { color: #fff; }
+    .hero-note { color: #74787a; font-size: 0.7rem; letter-spacing: .12em; text-transform: uppercase; margin-top: 1rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 10px; min-height: 48px; padding: 0 22px;
+      border-radius: 4px; font-size: 0.8rem; font-weight: 700;
+      transition: .25s;
+    }
+    .btn-primary { background: var(--accent); color: #101112; border: none; }
+    .btn-primary:hover { background: var(--accent2); color: #101112; }
+    .btn-ghost { border: 1px solid rgba(255,255,255,.25); color: #fff; background: transparent; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.6); color: #fff; }
+
+    /* trust strip */
+    .trust-strip { background: #17191a; color: #fff; border-bottom: 1px solid var(--line); }
+    .trust-grid { display: grid; grid-template-columns: repeat(4,1fr); min-height: 90px; }
+    .trust-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 18px;
+      border-right: 1px solid var(--line);
+    }
+    .trust-item:first-child { border-left: 1px solid var(--line); }
+    .trust-item strong { font-size: 1.8rem; letter-spacing: -.04em; color: #fff; line-height: 1.1; }
+    .trust-item span { font-size: 0.65rem; letter-spacing: .1em; color: #aaa; line-height: 1.4; }
+    .trust-phone { justify-content: center; }
+    .trust-phone a { font-weight: 800; color: var(--accent); font-size: 1rem; letter-spacing: .02em; }
+
+    /* sections */
+    .section { padding: 5rem 0; }
+    .section-label {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: .2em;
+      color: var(--accent); margin-bottom: 1.2rem;
+    }
+    .section-head h2 { font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 1.05; letter-spacing: -.04em; }
+    .section-head p { color: #8f9395; font-size: 0.95rem; max-width: 400px; }
+
+    /* training cards */
+    .training-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 14px; }
+    .training-card {
+      background: #17191a; border: 1px solid var(--line);
+      padding: 1.5rem; min-height: 230px;
+      border-radius: 8px;
+      transition: .3s;
+      color: #fff;
+      position: relative;
+    }
+    .training-card.featured { background: var(--accent); color: #121313; border-color: var(--accent); }
+    .training-card.featured .card-number,
+    .training-card.featured p { color: #5f430c; }
+    .training-card:hover { transform: translateY(-4px); border-color: rgba(245,158,11,.5); }
+    .card-number { font-size: 0.65rem; letter-spacing: .15em; color: #65686a; }
+    .card-icon { font-size: 2rem; color: var(--accent); margin: 1.2rem 0 0.8rem; }
+    .featured .card-icon { color: #17191a; }
+    .training-card h3 { font-size: 1.3rem; letter-spacing: -.03em; margin: 0.2rem 0; }
+    .training-card p { color: #b0b3b5; font-size: 0.8rem; margin-top: 0.5rem; line-height: 1.6; }
+    .card-line { position: absolute; left: 1.5rem; bottom: 1.2rem; width: 40px; height: 2px; background: var(--accent); }
+    .featured .card-line { background: #161718; }
+    .training-card.wide { grid-column: span 2; min-height: 170px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .wide-copy { max-width: 70%; }
+    .wide h3 { font-size: 1.6rem; margin-top: 0.3rem; }
+    .big-arrow { font-size: 3.5rem; color: var(--accent); line-height: 1; }
+
+    /* program panel */
+    .program-panel { background: #17191a; color: #fff; border-radius: 12px; overflow: hidden; }
+    .program-copy { padding: 2.5rem; }
+    .program-number { font-size: 4.2rem; line-height: 0.8; letter-spacing: -.06em; font-weight: 800; margin: 1.2rem 0; }
+    .program-number span { font-size: 0.7rem; letter-spacing: .2em; margin-left: 8px; color: #888; }
+    .program h2 { font-size: 2.4rem; line-height: 1.1; letter-spacing: -.04em; }
+    .program-copy p { color: #85898b; font-size: 0.9rem; max-width: 440px; margin: 1rem 0 1.8rem; line-height: 1.7; }
+    .program-steps { background: #111314; padding: 2rem 2.2rem; }
+    .step { display: grid; grid-template-columns: 50px 1fr; gap: 12px; padding: 1.2rem 0; border-bottom: 1px solid var(--line); }
+    .step:last-child { border-bottom: 0; }
+    .step>span { color: var(--accent); font-size: 0.7rem; letter-spacing: .1em; }
+    .step b { display: block; font-size: 1rem; }
+    .step small { color: #888; font-size: 0.7rem; }
+
+    /* why */
+    .why-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; }
+    .why-list { border-top: 1px solid var(--darkline); }
+    .why-item { display: grid; grid-template-columns: 50px 1fr; gap: 14px; padding: 1.5rem 0; border-bottom: 1px solid var(--darkline); }
+    .why-item>span { font-size: 0.7rem; color: #a4a5a5; }
+    .why-item h3 { font-size: 1.1rem; letter-spacing: -.02em; }
+    .why-item p { color: #777; font-size: 0.8rem; }
+
+    /* location */
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .address { display: flex; gap: 14px; align-items: center; margin: 1.5rem 0; }
+    .address>span { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid #ccc; border-radius: 50%; color: #9b6500; }
+    .address strong { display: block; font-size: 1rem; }
+    .address small { color: #888; }
+    .map-card { height: 300px; background: #d8d6d0; position: relative; overflow: hidden; border-radius: 12px; border: 1px solid #c6c4be; }
+    .map-grid {
+      position: absolute; inset: -40px;
+      background-image: 
+        linear-gradient(35deg, transparent 48%, rgba(0,0,0,.08) 49%, rgba(0,0,0,.08) 51%, transparent 52%),
+        linear-gradient(115deg, transparent 48%, rgba(0,0,0,.06) 49%, rgba(0,0,0,.06) 51%, transparent 52%);
+      background-size: 100px 80px;
+      transform: rotate(-6deg);
+    }
+    .map-pin {
+      position: absolute; left: 48%; top: 42%;
+      width: 50px; height: 50px;
+      border-radius: 50% 50% 50% 0;
+      background: var(--accent);
+      transform: rotate(-45deg);
+      display: grid; place-items: center;
+      font-weight: 800; color: #111;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      font-size: 1.2rem;
+    }
+    .map-pin::after { content: ""; width: 14px; height: 14px; background: #fff; border-radius: 50%; position: absolute; }
+    .map-label {
+      position: absolute; bottom: 16px; left: 16px;
+      background: #fff; padding: 12px 16px;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.1);
+    }
+    .map-label strong { display: block; font-size: 0.9rem; }
+    .map-label span { font-size: 0.7rem; color: #666; }
+
+    /* faq */
+    .faq { background: #111314; color: #fff; }
+    .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 3rem; }
+    .faq-list { border-top: 1px solid var(--line); }
+    details { border-bottom: 1px solid var(--line); padding: 0; }
+    summary {
+      list-style: none; cursor: pointer;
+      padding: 1.2rem 0;
+      font-weight: 600; font-size: 0.95rem;
+      display: flex; justify-content: space-between; gap: 12px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary span { color: var(--accent); font-size: 1.6rem; font-weight: 400; transition: .2s; }
+    details[open] summary span { transform: rotate(45deg); }
+    details p { color: #898d8f; font-size: 0.85rem; line-height: 1.7; padding: 0 0 1.5rem 0; }
+
+    /* final cta */
+    .final-cta { background: var(--accent); position: relative; overflow: hidden; }
+    .cta-orb {
+      position: absolute; width: 500px; height: 500px;
+      border: 1px solid rgba(0,0,0,.1); border-radius: 50%;
+      right: -120px; top: -200px;
+      box-shadow: 0 0 0 60px rgba(0,0,0,.02), 0 0 0 120px rgba(0,0,0,.015);
+    }
+    .cta-inner { position: relative; padding: 4rem 0; }
+    .final-cta h2 { font-size: clamp(2.8rem, 8vw, 5rem); line-height: 0.9; letter-spacing: -.06em; }
+    .final-cta h2 em { font-style: normal; color: #fff; }
+    .final-cta p { max-width: 450px; color: #674908; font-size: 1rem; margin: 1.2rem 0; }
+    .btn-light { background: #fff; color: #111; border: none; }
+    .btn-dark { border: 1px solid #493305; color: #332300; background: transparent; }
+
+    /* footer */
+    footer { background: #0b0c0d; color: #fff; }
+    .footer-main { min-height: 120px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding: 2rem 0; }
+    .footer-main>a { color: var(--accent); font-weight: 700; font-size: 1rem; }
+    .footer-bottom { border-top: 1px solid var(--line); padding: 1.2rem 0; display: flex; justify-content: space-between; color: #5d6162; font-size: 0.7rem; }
+
+    /* floating whatsapp */
+    .floating-whatsapp {
+      position: fixed; z-index: 90; right: 18px; bottom: 20px;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: #1fbe62; color: #fff;
+      display: grid; place-items: center;
+      font-size: 0.8rem; font-weight: 800;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      transition: .25s;
+    }
+    .floating-whatsapp:hover { transform: translateY(-3px); }
+
+    /* mobile adjustments */
+    @media (max-width: 992px) {
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .trust-item:nth-child(2) { border-right: 0; }
+      .trust-item:nth-child(3) { border-left: 1px solid var(--line); }
+      .trust-phone { border-right: 0; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 72px; left: 0; right: 0;
+        background: #0b0c0d; padding: 1.2rem 1.5rem;
+        border: 1px solid var(--line); border-radius: 0 0 8px 8px;
+        gap: 10px;
+      }
+      .hero { padding: 1.5rem 0 2.5rem; }
+      .hero h1 { font-size: 2.6rem; }
+      .hero-visual { display: none; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .trust-item { padding: 12px 14px; }
+      .trust-item strong { font-size: 1.5rem; }
+      .trust-phone { grid-column: span 2; border-left: 1px solid var(--line) !important; }
+      .section { padding: 3rem 0; }
+      .why-grid, .location-grid, .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .training-grid { grid-template-columns: 1fr 1fr; }
+      .training-card.wide { grid-column: span 2; }
+      .program-panel { grid-template-columns: 1fr; }
+      .program-copy { padding: 2rem 1.5rem; }
+      .program-steps { padding: 1.5rem; }
+      .map-card { height: 220px; }
+      .footer-main { flex-direction: column; align-items: flex-start; }
+      .footer-bottom { flex-direction: column; gap: 6px; }
+    }
+    @media (max-width: 480px) {
+      .training-grid { grid-template-columns: 1fr; }
+      .training-card.wide { grid-column: span 1; }
+      .container { padding-left: 1rem; padding-right: 1rem; }
+      .brand strong { font-size: 12px; }
+      .brand small { font-size: 7px; }
+      .nav-cta { font-size: 10px; padding: 6px 12px; }
+      .trust-item span { font-size: 0.55rem; }
+      .trust-item strong { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <nav class="container nav">
+      <a class="brand" href="#top" aria-label="Krishna Driving School home">
+        <span class="brand-mark">K</span>
+        <span>
+          <strong>KRISHNA</strong>
+          <small>DRIVING SCHOOL</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle ms-auto d-md-none" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-links ms-3 d-none d-md-flex" id="navLinks">
+        <a href="#training">Training</a>
+        <a href="#program">15-Day Program</a>
+        <a href="#options">Flexible Options</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <a class="nav-cta ms-2 d-none d-sm-inline-block" href="tel:7668069772">Call Now <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-road"></div>
+      <div class="container hero-inner">
+        <div class="row align-items-center g-4">
+          <div class="col-md-7 col-lg-6">
+            <div class="section-label text-light"><span></span> MUZAFFARNAGAR · CAR DRIVING TRAINING</div>
+            <h1>Learn to drive.<br><em>Drive with confidence.</em></h1>
+            <p class="hero-lead">
+              A focused <strong>15-day car driving training</strong> approach designed around practical control,
+              clutch confidence, hill driving and real-world skills.
+            </p>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a class="btn btn-primary" href="tel:7668069772">Start Learning <span>→</span></a>
+              <a class="btn btn-ghost" href="https://wa.me/917668069772" target="_blank" rel="noopener">WhatsApp Us</a>
+            </div>
+            <div class="hero-note">Beginner-friendly · Practical learning · Easy method</div>
+          </div>
+          <div class="col-md-5 col-lg-6 d-none d-md-block">
+            <div class="car-card p-3 bg-dark bg-opacity-10 rounded-4 border border-light border-opacity-10">
+              <div class="d-flex justify-content-between text-light-emphasis small">
+                <span>KRISHNA DRIVING SCHOOL</span>
+                <span>01 / 15</span>
+              </div>
+              <div class="car-illustration position-relative my-3" style="height:200px; background:linear-gradient(#252a2d 0%,#141719 60%,#0c0d0e 60%); border-radius:12px; overflow:hidden;">
+                <div class="position-absolute top-0 end-0 w-25 h-25 rounded-circle bg-warning bg-opacity-75" style="filter:blur(2px);"></div>
+                <div class="position-absolute bottom-0 start-0" style="border-left:80px solid transparent; border-right:80px solid transparent; border-bottom:100px solid #171b1d;"></div>
+                <div class="position-absolute bottom-0 end-0" style="border-left:100px solid transparent; border-right:100px solid transparent; border-bottom:110px solid #202528;"></div>
+                <div class="position-absolute bottom-0 start-50 translate-middle-x w-100" style="height:2px; background:linear-gradient(90deg,transparent,rgba(245,158,11,.65),transparent);"></div>
+                <div class="position-absolute start-50 translate-middle-x" style="bottom:30px; width:200px; height:60px; background:linear-gradient(#b8bdbe,#646a6b); border-radius:60px 50px 20px 20px; box-shadow:0 8px 24px rgba(0,0,0,.5);">
+                  <div style="position:absolute; width:110px; height:44px; left:45px; top:-32px; background:#8f9597; clip-path:polygon(18% 100%,32% 0,70% 0,87% 100%); border-radius:12px 12px 0 0;"></div>
+                  <div style="position:absolute; width:40px; height:24px; left:65px; top:-24px; background:#192024; clip-path:polygon(15% 100%,27% 10%,92% 10%,100% 100%);"></div>
+                  <div style="position:absolute; width:40px; height:24px; left:110px; top:-24px; background:#192024; clip-path:polygon(0 10%,77% 10%,92% 100%,0 100%);"></div>
+                  <div style="position:absolute; bottom:-14px; left:20px; width:32px; height:32px; background:#0b0c0d; border:6px solid #323637; border-radius:50%;"></div>
+                  <div style="position:absolute; bottom:-14px; right:20px; width:32px; height:32px; background:#0b0c0d; border:6px solid #323637; border-radius:50%;"></div>
+                  <div style="position:absolute; right:4px; top:22px; width:12px; height:8px; background:#ffe4a8; border-radius:8px; box-shadow:0 0 18px #f5c76b;"></div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center small text-light-emphasis">
+                <div><span class="text-secondary" style="font-size:0.6rem;">THE GOAL</span><br><strong>Control → Confidence</strong></div>
+                <span class="border border-secondary rounded-circle d-inline-flex align-items-center justify-content-center" style="width:32px;height:32px;color:var(--accent);">↗</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-hint text-center text-secondary mt-3 small d-none d-md-block"><span class="d-inline-block bg-secondary" style="width:30px;height:1px;vertical-align:middle;margin-right:8px;"></span> SCROLL TO EXPLORE</div>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-item"><strong>15</strong><span>DAY FOCUSED<br>TRAINING</span></div>
+        <div class="trust-item"><strong>5.0</strong><span>PUBLIC RATING<br>SIGNAL</span></div>
+        <div class="trust-item"><strong>Muzaffarnagar</strong><span>LOCAL<br>TRAINING</span></div>
+        <div class="trust-item trust-phone"><span>READY TO START?</span><a href="tel:7668069772">76680 69772</a></div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="section container">
+      <div class="section-label">01 — THE START</div>
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6"><h2 style="font-size:clamp(2.4rem,5vw,4rem); letter-spacing:-.04em;">Driving isn't difficult.<br><span class="text-secondary">The right guidance matters.</span></h2></div>
+        <div class="col-md-6">
+          <p class="fs-5" style="line-height:1.6;">From your first time behind the wheel to handling the car more confidently, the focus is simple: understand the car, practice the basics and build control.</p>
+          <p class="text-secondary small">Krishna Driving School's existing message is built around a focused 15-day learning proposition, with practical areas such as car control, creep function and hill clutch.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAINING -->
+    <section class="section bg-dark text-white" id="training">
+      <div class="container">
+        <div class="section-head d-md-flex justify-content-between align-items-end gap-4 mb-4">
+          <div>
+            <div class="section-label">02 — TRAINING</div>
+            <h2 class="text-white">Skills that make<br><span class="text-secondary">driving feel natural.</span></h2>
+          </div>
+          <p class="text-light-emphasis small" style="max-width:340px;">Practical learning is presented around the core control skills highlighted in the school's existing promotional material.</p>
+        </div>
+        <div class="training-grid">
+          <article class="training-card featured"><div class="card-number">01</div><div class="card-icon">⌁</div><h3>Car Control</h3><p>Build a better feel for steering, braking and accelerator control.</p><span class="card-line"></span></article>
+          <article class="training-card"><div class="card-number">02</div><div class="card-icon">◐</div><h3>Clutch & Gear</h3><p>Understand smooth clutch coordination and controlled gear changes.</p><span class="card-line"></span></article>
+          <article class="training-card"><div class="card-number">03</div><div class="card-icon">↘</div><h3>Creep Function</h3><p>Learn controlled low-speed movement for smoother car handling.</p><span class="card-line"></span></article>
+          <article class="training-card"><div class="card-number">04</div><div class="card-icon">△</div><h3>Hill Clutch</h3><p>Develop confidence with clutch control when driving on inclines.</p><span class="card-line"></span></article>
+          <article class="training-card wide"><div class="wide-copy"><div class="card-number">05</div><h3>From nervous to more confident.</h3><p>The learning experience should feel clear, approachable and practice-led — especially for beginners.</p></div><div class="big-arrow">↗</div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAM (15-day with flexible options) -->
+    <section class="section" id="program">
+      <div class="container">
+        <div class="program-panel row g-0">
+          <div class="col-md-6 program-copy">
+            <div class="section-label light">03 — THE SIGNATURE</div>
+            <div class="program-number">15<span>DAYS</span></div>
+            <h2>A focused path<br>to better driving.</h2>
+            <p>The school's existing promotion centres on learning car driving in 15 days. The exact day-by-day curriculum should be confirmed with the school before publishing.</p>
+            <a class="btn btn-light" href="tel:7668069772">Ask About Training <span>→</span></a>
+          </div>
+          <div class="col-md-6 program-steps">
+            <div class="step"><span>01</span><div><b>Understand</b><small>Controls & fundamentals</small></div></div>
+            <div class="step"><span>02</span><div><b>Practice</b><small>Clutch, gear & steering</small></div></div>
+            <div class="step"><span>03</span><div><b>Improve</b><small>Controlled practical skills</small></div></div>
+            <div class="step"><span>04</span><div><b>Build confidence</b><small>Ask about the complete program</small></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW FLEXIBLE OPTIONS SECTION -->
+    <section class="section bg-light" id="options">
+      <div class="container">
+        <div class="section-label">04 — FLEXIBLE TRAINING</div>
+        <h2 class="mb-4" style="font-size:clamp(2.2rem,5vw,3.4rem); letter-spacing:-.04em;">Training that fits <span class="text-secondary">your situation.</span></h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+              <div class="card-icon fs-1 mb-3" style="color:var(--accent);">🚗</div>
+              <h4 class="fw-bold">Own car from day 11</h4>
+              <p class="text-secondary">If you have your own car, we switch to your vehicle from day 11. You learn and practice on the car you'll actually drive.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+              <div class="card-icon fs-1 mb-3" style="color:var(--accent);">🚘</div>
+              <h4 class="fw-bold">School car for 15 days</h4>
+              <p class="text-secondary">No personal car? No problem. You get full 15-day training on our well-maintained training cars.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+              <div class="card-icon fs-1 mb-3" style="color:var(--accent);">🔄</div>
+              <h4 class="fw-bold">Post-training practice</h4>
+              <p class="text-secondary">Even after completion, you can join 1–2 days per week for supervised practice to keep your skills sharp.</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 p-4 bg-white rounded-4 border" style="border-left:4px solid var(--accent);">
+          <p class="mb-0 fw-medium"><span class="fw-bold">💡 Need extra practice?</span> If you've completed training but don't have a car, we offer ongoing practice sessions — just 1–2 days a week — to help you stay confident and maintain your skills.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="section" id="why-us">
+      <div class="container">
+        <div class="section-label">05 — WHY KRISHNA</div>
+        <div class="why-grid">
+          <h2>A simpler way<br>to <span class="text-secondary">start driving.</span></h2>
+          <div class="why-list">
+            <div class="why-item"><span>01</span><div><h3>Clear learning goal</h3><p>A focused 15-day proposition makes the offer easy to understand.</p></div></div>
+            <div class="why-item"><span>02</span><div><h3>Practical skill focus</h3><p>Core areas like car control, creep function and hill clutch are front and centre.</p></div></div>
+            <div class="why-item"><span>03</span><div><h3>Local & approachable</h3><p>A straightforward local service for people looking to learn around Muzaffarnagar.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION (updated address) -->
+    <section class="section" id="location">
+      <div class="container location-grid">
+        <div>
+          <div class="section-label">06 — FIND US</div>
+          <h2>Local training.<br><span class="text-secondary">Real roads. Real practice.</span></h2>
+          <p>Public business listings associate Krishna Driving School with the updated address below.</p>
+          <div class="address"><span>⌖</span><div><strong>Near Hanuman Chowk 196, Gaushala Rd</strong><small>Muzaffarnagar, Uttar Pradesh 251002</small></div></div>
+          <div class="d-flex flex-wrap gap-2 mt-3">
+            <a class="btn btn-primary" href="tel:7668069772">Call 7668069772 <span>→</span></a>
+            <a class="btn btn-outline-secondary border-1" href="https://www.google.com/maps/search/?api=1&query=Near+Hanuman+Chowk+196+Gaushala+Rd+Muzaffarnagar+251002" target="_blank" rel="noopener">Get Directions ↗</a>
+          </div>
+        </div>
+        <div class="map-card">
+          <div class="map-grid"></div>
+          <div class="map-pin">K</div>
+          <div class="map-label"><strong>Krishna Driving School</strong><span>Hanuman Chowk · Gaushala Rd</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq">
+      <div class="container faq-grid">
+        <div>
+          <div class="section-label">07 — FAQ</div>
+          <h2>Before you<br><span class="text-secondary">get started.</span></h2>
+        </div>
+        <div class="faq-list">
+          <details open><summary>Is the training suitable for beginners?<span>+</span></summary><p>The school's promotion is aimed at people learning car driving. Confirm the exact beginner training process directly with the school.</p></details>
+          <details><summary>How long is the program?<span>+</span></summary><p>The advertised proposition is a 15-day car driving training program. Ask the school about the exact schedule and daily duration.</p></details>
+          <details><summary>Do you teach hill and clutch control?<span>+</span></summary><p>Hill clutch and car control are specifically mentioned in the school's promotional material.</p></details>
+          <details><summary>Can I use my own car during training?<span>+</span></summary><p>Yes! If you have your own car, we switch to it from day 11. Otherwise, you can use our school car for the full 15 days.</p></details>
+          <details><summary>What if I need practice after training?<span>+</span></summary><p>We offer 1–2 days per week of supervised practice even after your course ends — so you stay confident.</p></details>
+          <details><summary>How do I enquire?<span>+</span></summary><p>Call 7668069772 or use the WhatsApp button on this website to contact the school.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="cta-orb"></div>
+      <div class="container cta-inner">
+        <div class="section-label light">08 — YOUR NEXT STEP</div>
+        <h2>Ready to start<br><em>driving?</em></h2>
+        <p>Take the first step. Call Krishna Driving School to ask about the 15-day training program.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-light" href="tel:7668069772">Call 7668069772 <span>→</span></a>
+          <a class="btn btn-dark" href="https://wa.me/917668069772" target="_blank" rel="noopener">WhatsApp Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-main">
+      <div class="brand">
+        <span class="brand-mark">K</span>
+        <span><strong>KRISHNA</strong><small>DRIVING SCHOOL</small></span>
+      </div>
+      <p class="small text-secondary m-0">Focused car driving training in Muzaffarnagar.</p>
+      <a href="tel:7668069772">76680 69772 ↗</a>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> Krishna Driving School</span>
+      <span>Built around practical learning & confidence</span>
+    </div>
+  </footer>
+
+  <a class="floating-whatsapp" href="https://wa.me/917668069772" target="_blank" rel="noopener" aria-label="WhatsApp Krishna Driving School">WA</a>
+
+  <!-- Bootstrap 5 JS (optional for toggles) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // header scroll, mobile menu, year
+    const header = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 20); });
+
+    const toggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navLinks.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // close on outside click
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav') && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
